@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Course Progress Tracker</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="firstpage_1.CSS">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-image: url('https://img.glyphs.co/img?src=aHR0cHM6Ly9zMy5tZWRpYWxvb3QuY29tL2Jsb2ctaW1hZ2VzL2h0bWw1LWNvbXBlbmRpdW0uanBnP210aW1lPTIwMTYxMTE1MTAzMDQ5&q=85&enlarge=true&h=800&w=1200');
+      background-size: cover;
+      background-position: center;
+      color: rgba(4, 4, 44, 0.856); /* Change text color to blue */
+      min-height: 100vh; /* Ensure full viewport height */
+    }
+    .navbar {
+      background-color: blue;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width:200vh;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background-color: darkblue;
+    }
+
+    .navbar-brand {
+      flex-grow: 1;
+      text-align: center;
+      font-size: 24px;
+      color:white;
+      font-weight: bolder;
+    }
+    /* Style for save progress button */
+.save-progress-button {
+  background-color: #2273de; /* Green */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px; /* Add some space between the button and the note */
+}
+
+.save-progress-button:hover {
+  background-color: #3795d0; /* Darker shade of green on hover */
+}
+
+/* Style for usage note */
+.usage-note {
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  text-align: center;
+  max-width: 600px; /* Limit width for better readability */
+  margin: 0 auto; /* Center the note horizontally */
+}
+
+.usage-note p {
+  margin: 0; /* Remove default margin for paragraphs */
+  font-size: 16px;
+  color: #333; /* Dark gray text color */
+}
+
+    /* Course Flow Chart */
+    .course-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .course {
+      width: 400px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8); /* Add transparency to make it blend with the background */
+      border-radius: 10px;
+      box-shadow: 10px 10px 10px 10px rgba(150, 191, 217, 0.917); /* Adjust box shadow */
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease; /* Add transition effect */
+    }
+
+    .course:hover {
+      transform: translateY(-5px); /* Add hover effect */
+    }
+
+    .course.completed {
+      background-color: #5cb85c; /* green */
+    }
+
+    .course .title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .course .description {
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* Progress Circle */
+    .progress-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .progress-svg {
+      width: 100px;
+    }
+
+    .progress-text {
+      font-size: 20px;
+    }
+
+    /* Style checkboxes */
+    .completed-checkbox {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid blue;
+      border-radius: 50%;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .completed-checkbox:checked {
+      background-color: blue;
+    }
+
+    /* Move tracker in circular path */
+    .progress-circle {
+      stroke-width: 10; /* Increase the thickness of the circle */
+    }
+
+    .progress-svg {
+      width: 150px; /* Increase the size of the SVG container */
+    }
+
+    .progress-text {
+      font-size: 24px; /* Increase the font size of the progress text */
+    }
+
+    .progress-circle {
+      stroke-dasharray: 283; /* Circumference of the circle */
+      stroke-dashoffset: 283; /* Start the circle completely filled */
+    }
+
+    /* Animation for tracker */
+    @keyframes moveTracker {
+      from {
+        stroke-dashoffset: 0;
+      }
+      to {
+        stroke-dashoffset: 285;
+      }
+    }
+
+    /* Media Query for Responsive Design */
+    @media screen and (max-width: 768px) {
+      .course {
+        width: calc(50% - 20px); /* Adjust width for smaller screens */
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .course {
+        width: calc(100% - 20px); /* Adjust width for even smaller screens */
+      }
+    }
+    /* Style for main course titles */
+.course .main-title {
+  font-size: 24px; /* Increase font size */
+  font-weight:bolder; /* Make it bold */
+  margin-bottom: 15px; /* Add some spacing */
+}
+
+/* Style for sub-course titles */
+.course .sub-title {
+  font-size: 18px; /* Decrease font size */
+  font-weight:bold; /* Keep it normal weight */
+  margin-bottom: 10px; /* Add some spacing */
+}
+
+
+    /* Button style */
+    .view-course-button {
+      margin-bottom: 50px;
+      background-color: #007bff;
+      color: white;
+      border: 10px;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .view-course-button:hover {
+      background-color: #0056b3;
+    }
+    /* Style for the modal buttons */
+.next-button,
+.prev-button,
+.skip-button,
+.save-progress-button {
+  background-color: #007bff; /* Blue color for buttons */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px; /* Add margin between buttons */
+}
+
+.next-button:hover,
+.prev-button:hover,
+.skip-button:hover,
+.save-progress-button:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+}
+
+/* Style for the modal close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  transition: color 0.3s ease; /* Add transition effect */
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Add animation to modal content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+  animation: slideIn 0.5s ease; /* Add animation for modal appearance */
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Style for the modal steps */
+.step {
+  display: none;
+}
+
+.step.active {
+  display: block;
+}
+
+/* Adjust modal positioning */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto; /* Enable scrolling when modal content exceeds viewport */
+}
+
+/* Center the modal vertically and horizontally */
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+  </style>
+</head>
+<body>
+  <!-- Tutorial Modal -->
+  <div id="tutorialModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="step active" id="step1">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Read through the tutorial steps to familiarize yourself with the website's features.</li>
+        </ul>
+        <button class="skip-button">Skip</button>
+        <button class="next-button">Next</button>
+      </div>
+      <div class="step" id="step2">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Click the "Next" button to proceed through each step of the tutorial. Each step provides instructions on how to navigate and utilize different aspects of the website. If you're already familiar with the website or prefer to explore it on your own, you can click the "Skip" button to bypass the remaining tutorial steps.</li>
+        </ul>
+        <button class="prev-button">Previous</button>
+          <button class="skip-button">Skip</button>
+          <button class="next-button">Next</button>
+      </div>
+      <div class="step" id="step3">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li> Explore the available Python courses listed on the main page. </li>
+        </ul>
+        <button class="prev-button">Previous</button>
+          <button class="skip-button">Skip</button>
+          <button class="next-button">Next</button>
+      </div>
+      <div class="step" id="step4">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Each course contains sub-topics with checkboxes to mark your progress as you complete them.</li>
+        </ul>
+        <button class="prev-button">Previous</button>
+          <button class="skip-button">Skip</button>
+          <button class="next-button">Next</button>
+
+      </div>
+      <div class="step" id="step4">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Once you've completed certain sections or courses, you can click the "Save Progress" button to save your completion track. This ensures that your progress is recorded for future visits.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="navbar">
+    <a href="index.html" class="navbar-icon"><i class="fas fa-arrow-left"></i></a>
+    <h2 class="navbar-brand">HTML COURSES</h2>
+    <a href="firstpage_1.HTML" class="navbar-icon"><i class="fas fa-home"></i></a>
+  </div>
+
+<div class="progress-container">
+  <svg class="progress-svg" viewBox="0 0 100 100">
+    <circle class="track" cx="50" cy="50" r="40" stroke="white" fill="none"></circle>
+    <circle class="progress-circle" cx="50" cy="50" r="40" stroke="blue" fill="none"></circle>
+    <text class="progress-text" x="50" y="50" text-anchor="middle" dominant-baseline="central">0%</text>
+  </svg>
+</div>
+
+<div class="course-flow">
+  <div class="course">
+    <div class="main-title">INTRODUCTION TO PYTHON</div>
+    <div class="description">Learn the basics of Python programming language.</div>
+    <br> <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox"> Variables and Data Types</div>
+      <div class="description">Learn about variables, data types, and basic operations.</div>
+      <br><a href="link_to_variables_and_data_types_course" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox"> Control Structures</div>
+      <div class="description">Explore conditional statements and loops.</div>
+      <br><a href="link_to_control_structures_course" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox"> Functions</div>
+      <div class="description">Understand the concept of functions and how to use them.</div>
+      <br><a href="link_to_functions_course" class="view-course-button">View Course</a>
+    </div>
+  </div>
+
+  <div class="course">
+    <div class="main-title">INTERMEDIATE PYTHON</div>
+    <div class="description">Deepen your knowledge with intermediate level concepts.</div>
+    <br><div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox" > Object-Oriented Programming</div>
+      <div class="description">Learn about classes, objects, and inheritance.</div>
+      <br><a href="link_to_oop_course" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="title"><input type="checkbox" class="completed-checkbox"> File Handling</div>
+      <div class="description">Learn to work with files and directories in Python.</div>
+      <br><a href="link_to_file_handling_course" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox" > Networking</div>
+      <div class="description">Learn about network programming in Python.</div>
+      <br><a href="link_to_networking_course" class="view-course-button">View Course</a>
+    </div>
+  </div>
+
+  <div class="course">
+    <div class="main-title">ADVANCED PYTHON PROGRAMMING</div>
+    <div class="description">Master advanced topics and techniques in Python.</div>
+    <br><div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox"> Concurrency</div>
+      <div class="description">Explore concurrent programming with threads and processes.</div>
+      <br><a href="link_to_concurrency_course" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox" > Networking</div>
+      <div class="description">Learn about network programming in Python.</div>
+      <br><a href="link_to_networking_course" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox" > Networking</div>
+      <div class="description">Learn about network programming in Python.</div>
+      <br><a href="link_to_networking_course" class="view-course-button">View Course</a>
+    </div>
+  </div>
+</div>
+<!--  "Save Progress" button -->
+<br><br>
+<button class="save-progress-button">Save Progress</button>
+
+
+<script src="firstpage_1.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById("tutorialModal");
+    const closeButton = modal.querySelector(".close");
+    const steps = modal.querySelectorAll(".step");
+    let currentStep = 0;
+  
+    // Show the modal
+    modal.style.display = "block";
+  
+    // Function to show the current step
+    function showStep(stepIndex) {
+        steps.forEach((step, index) => {
+            if (index === stepIndex) {
+                step.classList.add("active");
+            } else {
+                step.classList.remove("active");
+            }
+        });
+    }
+  
+    // Function to go to the next step
+    function nextStep() {
+        currentStep++;
+        if (currentStep < steps.length) {
+            showStep(currentStep);
+        } else {
+            modal.style.display = "none";
+        }
+    }
+  
+    // Function to go to the previous step
+    function prevStep() {
+        currentStep--;
+        if (currentStep >= 0) {
+            showStep(currentStep);
+        }
+    }
+  
+    // Function to skip to the last step
+    function skipToLastStep() {
+        currentStep = steps.length - 1;
+        showStep(currentStep);
+    }
+  
+    // Close the modal when clicking on the close button
+    closeButton.addEventListener("click", function() {
+        modal.style.display = "none";
+    });
+  
+    // Close the modal when clicking outside the modal content
+    window.addEventListener("click", function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+  
+    // Event listeners for next, previous, and skip buttons
+    const nextButtons = modal.querySelectorAll(".next-button");
+    nextButtons.forEach(button => {
+        button.addEventListener("click", nextStep);
+    });
+  
+    const prevButtons = modal.querySelectorAll(".prev-button");
+    prevButtons.forEach(button => {
+        button.addEventListener("click", prevStep);
+    });
+  
+    const skipButton = modal.querySelector(".skip-button"); // Define the skipButton variable
+  skipButton.addEventListener("click", function() {
+      modal.style.display = "none"; // Close the modal completely
+  }); // Add event listener for the skip button
+  });
+  
+ 
+  const checkboxes = document.querySelectorAll('.completed-checkbox');
+
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      updateProgress();
+      updateMainCourseCompletion(this.closest('.course')); // Pass the parent course element to updateMainCourseCompletion
+    });
+  });
+  
+  function updateProgress() {
+    const totalCourses = document.querySelectorAll('.sub-course').length;
+    const completedCourses = document.querySelectorAll('.completed-checkbox:checked').length;
+    const progressPercentage = Math.min(Math.round((completedCourses / totalCourses) * 100), 100);
+
+    const progressText = document.querySelector('.progress-text');
+    progressText.textContent = progressPercentage + '%';
+
+    const progressCircle = document.querySelector('.progress-circle');
+    const circleLength = 2 * Math.PI * progressCircle.getAttribute('r'); // Circumference of the circle
+    const strokeDashArray = circleLength;
+    const strokeDashOffset = circleLength - (circleLength * progressPercentage) / 100;
+    progressCircle.style.strokeDasharray = strokeDashArray;
+    progressCircle.style.strokeDashoffset = strokeDashOffset;
+
+    progressCircle.style.transition = 'stroke-dashoffset 0.3s ease'; // Add transition effect
+  }
+
+  function updateMainCourseCompletion(course) {
+    const subCourses = course.querySelectorAll('.sub-course');
+    const totalSubCourses = subCourses.length;
+    let completedSubCourses = 0;
+
+    subCourses.forEach(subCourse => {
+      const checkbox = subCourse.querySelector('.completed-checkbox');
+      if (checkbox.checked) {
+        completedSubCourses++;
+      }
+    });
+
+    const mainCourseProgressPercentage = Math.min(Math.round((completedSubCourses / totalSubCourses) * 100), 100);
+
+    const progressText = course.querySelector('.progress-text');
+    progressText.textContent = mainCourseProgressPercentage + '%';
+
+    const progressCircle = course.querySelector('.progress-circle');
+    const circleLength = 2 * Math.PI * progressCircle.getAttribute('r'); // Circumference of the circle
+    const strokeDashOffset = circleLength - (circleLength * mainCourseProgressPercentage) / 100;
+    progressCircle.style.strokeDashoffset = strokeDashOffset;
+
+    if (completedSubCourses === totalSubCourses) {
+      course.classList.add('completed');
+    } else {
+      course.classList.remove('completed');
+    }
+  }
+  const saveButton = document.querySelector('.save-progress-button');
+saveButton.addEventListener('click', function() {
+  // Here you can implement functionality to save the completion track, such as using localStorage or sending data to a server
+  alert('Progress saved successfully!');
+});
+// JavaScript to display the tutorial modal
+
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("tutorialModal");
+  const closeButton = modal.querySelector(".close");
+  const steps = modal.querySelectorAll(".step");
+  let currentStep = 0;
+
+  // Show the modal
+  modal.style.display = "block";
+
+  // Function to show the current step
+  function showStep(stepIndex) {
+      steps.forEach((step, index) => {
+          if (index === stepIndex) {
+              step.classList.add("active");
+          } else {
+              step.classList.remove("active");
+          }
+      });
+  }
+
+  // Function to go to the next step
+  function nextStep() {
+      currentStep++;
+      if (currentStep < steps.length) {
+          showStep(currentStep);
+      } else {
+          modal.style.display = "none";
+      }
+  }
+
+  // Function to go to the previous step
+  function prevStep() {
+      currentStep--;
+      if (currentStep >= 0) {
+          showStep(currentStep);
+      }
+  }
+
+  // Function to skip to the last step
+  function skipToLastStep() {
+      currentStep = steps.length - 1;
+      showStep(currentStep);
+  }
+
+  // Close the modal when clicking on the close button
+  closeButton.addEventListener("click", function() {
+      modal.style.display = "none";
+  });
+
+  // Close the modal when clicking outside the modal content
+  window.addEventListener("click", function(event) {
+      if (event.target === modal) {
+          modal.style.display = "none";
+      }
+  });
+
+  // Event listeners for next, previous, and skip buttons
+  const nextButtons = modal.querySelectorAll(".next-button");
+  nextButtons.forEach(button => {
+      button.addEventListener("click", nextStep);
+  });
+
+  const prevButtons = modal.querySelectorAll(".prev-button");
+  prevButtons.forEach(button => {
+      button.addEventListener("click", prevStep);
+  });
+
+});
+
+
+
+</script>
+
+</body>
+</html>

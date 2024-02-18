@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Login-Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/dbed6b6114.js"></script>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    font-family: sans-serif;
+    background: rgb(187, 187, 245);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    width: 350px;
+    height: 500px;
+    box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.26);
+    perspective: 1000px;
+}
+
+.inner-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 2s;
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 100, 0.8), rgba(0, 0, 100, 0.8)), url('../images/download.png');
+    padding: 55px;
+    box-sizing: border-box;
+    backface-visibility: hidden;
+    border-radius: 5px;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.card h2 {
+    font-weight: normal;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-box {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #fff;
+    margin: 6px 0;
+    height: 32px;
+    border-radius: 20px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    outline: none;
+    text-align: center;
+    color: #fff;
+}
+
+::placeholder {
+    color: #fff;
+    font-size: 12px;
+}
+
+button {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #fff;
+    margin: 35px 0 10px;
+    height: 32px;
+    font-size: 12px;
+    border-radius: 20px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.submit-btn {
+    position: relative;
+}
+
+.submit-btn::after {
+    content: '\27a4';
+    color: #333;
+    line-height: 32px;
+    font-size: 17px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+}
+
+span {
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+
+#password-info-register{
+    font-size: 12px;
+}
+
+.card .btn {
+    margin-top: 70px;
+}
+
+.card a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.card .btn span {
+    text-decoration: underline;
+    font-weight: bolder;
+}
+    </style>
+    <script>
+        function hideShow() {
+    const pass = document.querySelector('#password');
+    const typeAttr = pass.getAttribute('type');
+    const passwordInfo = document.querySelector('#password-info')
+
+    if (typeAttr == 'password') {
+        pass.setAttribute('type', 'text');
+        passwordInfo.textContent = 'Hide password';
+    } else if (typeAttr == 'text') {
+        pass.setAttribute('type', 'password');
+        passwordInfo.textContent = 'Show password';
+
+    }
+
+}
+function hideShowRegister() {
+    const pass = document.querySelector('#password-register'); // Update the ID here
+    const typeAttr = pass.getAttribute('type');
+    const passwordInfo = document.querySelector('#password-info-register'); // Update the ID here
+
+    if (typeAttr === 'password') {
+        pass.setAttribute('type', 'text');
+        passwordInfo.textContent = 'Hide Password';
+    } else if (typeAttr === 'text') {
+        pass.setAttribute('type', 'password');
+        passwordInfo.textContent = 'Show Password';
+    }
+}
+
+
+
+// flipping
+
+var card = document.getElementById("card");
+var title = document.getElementById("title");
+
+function openRegister() {
+    card.style.transform = "rotateY(-180deg)";
+    title.innerHTML = 'Registration-Form';
+}
+
+function openLogin() {
+    card.style.transform = "rotateY(0deg)";
+    title.innerHTML = 'Login-Form';
+}
+    </script>
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="inner-box" id="card">
+                <div class="card-front">
+                    <h2>LOGIN</h2>
+                    <form action="">
+                        <input type="email" class="input-box" placeholder="Your Email ID" required>
+                        <input type="password" class="input-box" id="password" placeholder="Password" required>
+                        <input type="checkbox" name="" id="" onclick="hideShow()"><span id="password-info">Show Password</span>
+                        <button type="submit" class="submit-btn">Submit</button>
+                        <input type="checkbox" name="" id=""><span>Remember Me</span>
+                    </form>
+                    <button type="button" class="btn" onclick="openRegister()">New User</button>
+                    <a href="">Forgot Password</a>
+                </div>
+                <div class="card-back">
+                    <h2>REGISTER</h2>
+                    <form action="">
+                        <input type="text" class="input-box" placeholder="Your Name" required>
+                        <input type="email" class="input-box" placeholder="Your Email ID" required>
+                        <input type="password" class="input-box" id="password-register" placeholder="Password" required>
+                        <input type="checkbox" name="" id="showPasswordRegister" onclick="hideShowRegister()">
+                        <label for="showPasswordRegister" id="password-info-register">Show Password</label>
+                        <button type="submit" class="submit-btn">CREATE</button>
+                        <input type="checkbox" name="" id=""><span>Remember Me</span>
+                    </form>
+                    <button type="button" class="btn" onclick="openLogin()">Already have an Account?<span><i class="fas fa-user"></i> Login</span></button>
+                    <a href="">Forgot Password</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="style.js"></script>
+</body>
+
+</html>

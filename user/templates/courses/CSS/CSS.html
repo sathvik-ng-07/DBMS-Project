@@ -1,0 +1,139 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Course Progress Tracker</title>
+    <link rel="stylesheet" href="CSS.css">
+  
+  
+</head>
+<body>
+  <!-- Tutorial Modal -->
+  <div id="tutorialModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="step active" id="step1">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Read through the tutorial steps to familiarize yourself with the website's features.</li>
+        </ul>
+        <button class="skip-button">Skip</button>
+        <button class="next-button">Next</button>
+      </div>
+      <div class="step" id="step2">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Click the "Next" button to proceed through each step of the tutorial. Each step provides instructions on how to navigate and utilize different aspects of the website. If you're already familiar with the website or prefer to explore it on your own, you can click the "Skip" button to bypass the remaining tutorial steps.</li>
+        </ul>
+        <button class="prev-button">Previous</button>
+          <button class="skip-button">Skip</button>
+          <button class="next-button">Next</button>
+      </div>
+      <div class="step" id="step3">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li> Explore the available Python courses listed on the main page. </li>
+        </ul>
+        <button class="prev-button">Previous</button>
+          <button class="skip-button">Skip</button>
+          <button class="next-button">Next</button>
+      </div>
+      <div class="step" id="step4">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Each course contains sub-topics with checkboxes to mark your progress as you complete them.</li>
+        </ul>
+        <button class="prev-button">Previous</button>
+          <button class="skip-button">Skip</button>
+          <button class="next-button">Next</button>
+
+      </div>
+      <div class="step" id="step4">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Once you've completed certain sections or courses, you can click the "Save Progress" button to save your completion track. This ensures that your progress is recorded for future visits.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="navbar">
+    <a href="index.html" class="navbar-icon"><i class="fas fa-arrow-left"></i></a>
+    <h2 class="navbar-brand">CSS COURSES</h2>
+    <a href="firstpage_1.HTML" class="navbar-icon"><i class="fas fa-home"></i></a>
+  </div>
+
+<div class="progress-container">
+  <svg class="progress-svg" viewBox="0 0 100 100">
+    <circle class="track" cx="50" cy="50" r="40" stroke="white" fill="none"></circle>
+    <circle class="progress-circle" cx="50" cy="50" r="40" stroke="blue" fill="none"></circle>
+    <text class="progress-text" x="50" y="50" text-anchor="middle" dominant-baseline="central">0%</text>
+  </svg>
+</div>
+
+<div class="course-flow">
+  <div class="course">
+    <div class="main-title">INTRODUCTION TO CSS</div>
+    <div class="description">Learn the basics of CSS language.</div>
+    <br> <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox">CSS Syntax</div>
+      <div class="description"> Let's Learn the CSS Syntax rule consists of a selector, property, and its value.</div>
+      <br><a href="https://www.geeksforgeeks.org/css-syntax/?ref=lbp" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox">CSS Colors</div>
+      <div class="description">Explore CSS Color property is used to set the color of HTML elements.</div>
+      <br><a href="https://www.geeksforgeeks.org/css-colors/?ref=lbp" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox">CSS Margins and Padding</div>
+      <div class="description">Learn about the CSS Margin & Padding properties of the Box Model & understand their implementation </div>
+      <br><a href="https://www.geeksforgeeks.org/css-margins-padding/?ref=lbp" class="view-course-button">View Course</a>
+    </div>
+  </div>
+
+  <div class="course">
+    <div class="main-title">INTERMEDIATE CSS</div>
+    <div class="description">Deepen your knowledge with intermediate level concepts.</div>
+    <br><div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox" >CSS Opacity/Transparency</div>
+      <div class="description">Let's Learn the opacity in CSS is the property of an element that describes the transparency of the element.</div>
+      <br><a href="https://www.geeksforgeeks.org/css-opacity-transparency/?ref=lbp" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="title"><input type="checkbox" class="completed-checkbox">CSS Image Gallery</div>
+      <div class="description">Explore the Gallery is used to store and display a collection of pictures.</div>
+      <br><a href="https://www.geeksforgeeks.org/css-image-gallery/?ref=lbp" class="view-course-button">View Course</a>
+    </div>
+  </div>
+  
+
+  <div class="course">
+    <div class="main-title">ADVANCED CSS</div>
+    <div class="description">Master advanced topics and techniques in CSS.</div>
+    <br><div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox">CSS Grid Layout Module</div>
+      <div class="description">Explore the CSS grid layout module is used to create a grid-based layout system, with the help of rows and columns.</div>
+      <br><a href="https://www.geeksforgeeks.org/css-grid-layout-module/?ref=lbp" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox" >CSS Positioning Elements</div>
+      <div class="description">The position property in CSS tells about the method of positioning for an element or an HTML entity</div>
+      <br><a href="https://www.geeksforgeeks.org/css-positioning-elements/?ref=lbp" class="view-course-button">View Course</a>
+    </div>
+  </div>
+</div>
+<!--  "Save Progress" button -->
+<br><br>
+<button class="save-progress-button">Save Progress</button>
+
+
+<script src="CSS.js"></script>
+</body>
+</html>
+ 

@@ -1,0 +1,135 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>HTML Course Progress Tracker</title>
+  <link rel="stylesheet" href="HTML.css">
+  </head>
+<body>
+  <!-- Tutorial Modal -->
+  <div id="tutorialModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="step active" id="step1">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Read through the tutorial steps to familiarize yourself with the website's features.</li>
+        </ul>
+        <button class="skip-button">Skip</button>
+        <button class="next-button">Next</button>
+      </div>
+      <div class="step" id="step2">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Click the "Next" button to proceed through each step of the tutorial. Each step provides instructions on how to navigate and utilize different aspects of the website. If you're already familiar with the website or prefer to explore it on your own, you can click the "Skip" button to bypass the remaining tutorial steps.</li>
+        </ul>
+        <button class="prev-button">Previous</button>
+          <button class="skip-button">Skip</button>
+          <button class="next-button">Next</button>
+      </div>
+      <div class="step" id="step3">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li> Explore the available Python courses listed on the main page. </li>
+        </ul>
+        <button class="prev-button">Previous</button>
+          <button class="skip-button">Skip</button>
+          <button class="next-button">Next</button>
+      </div>
+      <div class="step" id="step4">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Each course contains sub-topics with checkboxes to mark your progress as you complete them.</li>
+        </ul>
+        <button class="prev-button">Previous</button>
+          <button class="skip-button">Skip</button>
+          <button class="next-button">Next</button>
+
+      </div>
+      <div class="step" id="step4">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Once you've completed certain sections or courses, you can click the "Save Progress" button to save your completion track. This ensures that your progress is recorded for future visits.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="navbar">
+    <a href="index.html" class="navbar-icon"><i class="fas fa-arrow-left"></i></a>
+    <h2 class="navbar-brand">HTML COURSES</h2>
+    <a href="firstpage_1.HTML" class="navbar-icon"><i class="fas fa-home"></i></a>
+  </div>
+
+<div class="progress-container">
+  <svg class="progress-svg" viewBox="0 0 100 100">
+    <circle class="track" cx="50" cy="50" r="40" stroke="white" fill="none"></circle>
+    <circle class="progress-circle" cx="50" cy="50" r="40" stroke="blue" fill="none"></circle>
+    <text class="progress-text" x="50" y="50" text-anchor="middle" dominant-baseline="central">0%</text>
+  </svg>
+</div>
+
+<div class="course-flow">
+  <div class="course">
+    <div class="main-title">INTRODUCTION TO HTML</div>
+    <div class="description">Learn the basics of HTML language.</div>
+    <br> <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox"> Elements and Attributes</div>
+      <div class="description">Learn about HTML basic Elements and Attributes.</div>
+      <br><a href="https://www.geeksforgeeks.org/html-attributes/?ref=lbp" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox">HTML Tables</div>
+      <div class="description">Explore arrangement of data in rows and columns in tabular format .</div>
+      <br><a href="https://www.geeksforgeeks.org/html-tables/?ref=lbp" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox"> HTML Lists</div>
+      <div class="description">Understand the data or any information on web pages in the ordered or unordered form. .</div>
+      <br><a href="https://www.geeksforgeeks.org/html-lists/?ref=lbp" class="view-course-button">View Course</a>
+    </div>
+  </div>
+
+  <div class="course">
+    <div class="main-title">INTERMEDIATE HTML</div>
+    <div class="description">Deepen your knowledge with intermediate level concepts.</div>
+    <br><div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox" >HTML File Paths</div>
+      <div class="description">Learn about the file path specifies the location of a file inside a web folder structure.</div>
+      <br><a href="https://www.geeksforgeeks.org/html-file-paths/?ref=lbp" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="title"><input type="checkbox" class="completed-checkbox">HTML Iframes</div>
+      <div class="description">various attributes for specifying dimensions, borders, scrolling, and more to customize the appearance.</div>
+      <br><a href="https://www.geeksforgeeks.org/html-iframes/?ref=lbp" class="view-course-button">View Course</a>
+    </div>
+  </div>
+
+  <div class="course">
+    <div class="main-title">ADVANCED HTML</div>
+    <div class="description">Master advanced topics and techniques in HTML.</div>
+    <br><div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox">HTML5 Video</div>
+      <div class="description">Explore the video content on the web page. .</div>
+      <br><a href="https://www.geeksforgeeks.org/html5-video/?ref=lbp"class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox" > HTML Graphics</div>
+      <div class="description"> It can be used to make graphics and animations like in HTML canvas</div>
+      <br><a href="https://www.geeksforgeeks.org/svg/?ref=lbp" class="view-course-button">View Course</a>
+    </div>
+  </div>
+</div>
+<!--  "Save Progress" button -->
+<br><br>
+<button class="save-progress-button">Save Progress</button>
+
+
+<script src="HTml.js"></script>
+</body>
+</html>

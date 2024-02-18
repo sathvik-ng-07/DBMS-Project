@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Course Progress Tracker</title>
+ 
+  <link rel="stylesheet" href="python.css">
+ 
+</head>
+<body>
+  <!-- Tutorial Modal -->
+  <div id="tutorialModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="step active" id="step1">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Read through the tutorial steps to familiarize yourself with the website's features.</li>
+        </ul>
+        <button class="skip-button">Skip</button>
+        <button class="next-button">Next</button>
+      </div>
+      <div class="step" id="step2">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Click the "Next" button to proceed through each step of the tutorial. Each step provides instructions on how to navigate and utilize different aspects of the website. If you're already familiar with the website or prefer to explore it on your own, you can click the "Skip" button to bypass the remaining tutorial steps.</li>
+        </ul>
+        <button class="prev-button">Previous</button>
+          <button class="skip-button">Skip</button>
+          <button class="next-button">Next</button>
+      </div>
+      <div class="step" id="step3">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li> Explore the available Python courses listed on the main page. </li>
+        </ul>
+        <button class="prev-button">Previous</button>
+          <button class="skip-button">Skip</button>
+          <button class="next-button">Next</button>
+      </div>
+      <div class="step" id="step4">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Each course contains sub-topics with checkboxes to mark your progress as you complete them.</li>
+        </ul>
+        <button class="prev-button">Previous</button>
+          <button class="skip-button">Skip</button>
+          <button class="next-button">Next</button>
+
+      </div>
+      <div class="step" id="step4">
+        <h2>Tutorial: How to Use the Website</h2>
+        <ul>
+          <li>Once you've completed certain sections or courses, you can click the "Save Progress" button to save your completion track. This ensures that your progress is recorded for future visits.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="navbar">
+    <a href="index.html" class="navbar-icon"><i class="fas fa-arrow-left"></i></a>
+    <h2 class="navbar-brand">PYTHON COURSES</h2>
+    <a href="firstpage_1.HTML" class="navbar-icon"><i class="fas fa-home"></i></a>
+  </div>
+
+<div class="progress-container">
+  <svg class="progress-svg" viewBox="0 0 100 100">
+    <circle class="track" cx="50" cy="50" r="40" stroke="white" fill="none"></circle>
+    <circle class="progress-circle" cx="50" cy="50" r="40" stroke="blue" fill="none"></circle>
+    <text class="progress-text" x="50" y="50" text-anchor="middle" dominant-baseline="central">0%</text>
+  </svg>
+</div>
+
+<div class="course-flow">
+  <div class="course">
+    <div class="main-title">INTRODUCTION TO PYTHON</div>
+    <div class="description">Learn the basics of Python programming language.</div>
+    <br> <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox"> Variables and Data Types</div>
+      <div class="description">Learn about variables, data types, and basic operations.</div>
+      <br><a href="https://www.geeksforgeeks.org/python-data-types/" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox"> Control Structures</div>
+      <div class="description">Explore conditional statements and loops.</div>
+      <br><a href="https://www.geeksforgeeks.org/python-if-else/" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox"> Functions</div>
+      <div class="description">Understand the concept of functions and how to use them.</div>
+      <br><a href="https://www.geeksforgeeks.org/python-built-in-functions/" class="view-course-button">View Course</a>
+    </div>
+  </div>
+
+  <div class="course">
+    <div class="main-title">INTERMEDIATE PYTHON</div>
+    <div class="description">Deepen your knowledge with intermediate level concepts.</div>
+    <br><div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox" > Object-Oriented Programming</div>
+      <div class="description">Learn about classes, objects, and inheritance.</div>
+      <br><a href=" https://www.geeksforgeeks.org/python-oops-concepts/" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="title"><input type="checkbox" class="completed-checkbox"> File Handling</div>
+      <div class="description">Learn to work with files and directories in Python.</div>
+      <br><a href="https://www.geeksforgeeks.org/file-handling-python/" class="view-course-button">View Course</a>
+    </div>
+  </div>
+
+  <div class="course">
+    <div class="main-title">ADVANCED PYTHON PROGRAMMING</div>
+    <div class="description">Master advanced topics and techniques in Python.</div>
+    <br><div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox"> Concurrency</div>
+      <div class="description">Explore concurrent programming with threads and processes.</div>
+      <br><a href=" https://www.geeksforgeeks.org/python-program-with-concurrency/" class="view-course-button">View Course</a>
+    </div>
+    <br>
+    <div class="sub-course">
+      <div class="sub-title"><input type="checkbox" class="completed-checkbox" > Networking</div>
+      <div class="description">Learn about network programming in Python.</div>
+      <br><a href="https://www.geeksforgeeks.org/python-network-programming/" class="view-course-button">View Course</a>
+    </div>
+  </div>
+</div>
+<!--  "Save Progress" button -->
+<br><br>
+<button class="save-progress-button">Save Progress</button>
+
+
+<script src="python.js"></script>
+
+
+</body>
+</html>

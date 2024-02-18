@@ -1,0 +1,310 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Custom font */
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #6ab7ff, #a1c4fd); /* Gradient background */
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+        }
+        
+        /* Profile Styles */
+        .profile {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        /* File upload button styles */
+        .upload-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .upload-button:hover {
+            background-color: #45a049;
+        }
+        
+        /* Uploaded photo styles */
+        #uploaded-photo {
+            margin-top: 10px;
+            position: relative;
+        }
+        
+        #uploaded-photo img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        #uploaded-photo img:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Course Progress Styles */
+        .course-progress {
+            margin-bottom: 20px;
+        }
+        
+        .course {
+            background-color: #cfe2ff; /* Blue background */
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow */
+            transition: transform 0.3s ease; /* Smooth transition */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course:hover {
+            transform: translateY(-5px); /* Move up on hover */
+        }
+        
+        /* Circular progress tracker */
+        .progress-circle {
+            /* Circular progress tracker */
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 73px;
+            height: 73px;
+            border-radius: 100%;
+            background-color: transparent; /* Transparent background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #4CAF50; /* Progress color */
+            border: 2px solid #4CAF50; /* Progress color */
+            font-weight: bold; /* Make text bold */
+        }
+        
+        .progress-circle {
+            border-color: #1e90ff; /* Blue color */
+            color: #1e90ff; /* Blue color */
+        }
+        
+        /* Recommended Courses Styles */
+        .recommended-courses {
+            background-color: #d9eaf9; /* Light blue background */
+            border-radius: 5px;
+            padding: 20px;
+        }
+        
+        .recommended-courses h2 {
+            margin-bottom: 10px;
+        }
+        
+        .recommended-course {
+            background-color: #ffffff; /* White background */
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow */
+            transition: transform 0.3s ease; /* Smooth transition */
+            position: relative;
+            overflow: hidden;
+            display: inline-block; 
+            width: calc(50% - 40px); /* Adjust the width to fit two boxes in a row with a little margin */
+            margin-right: 20px; /* Margin between boxes */
+            vertical-align: top; /* Align boxes to the top */
+        }
+        
+        .recommended-course:last-child {
+            margin-right: 0; /* Remove margin from the last box */
+        }
+        
+        /* Remove/change photo button styles */
+        .remove-change-buttons {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+        }
+        
+        #uploaded-photo:hover .remove-change-buttons {
+            display: block;
+        }
+        
+        .remove-change-buttons button {
+            margin: 5px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .remove-change-buttons button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body style="background-color: rgb(24, 13, 67);" class="container-fluid">
+
+<header class="row">
+    <!-- navbar-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" class="styleheader" href="{% url "index" %}">project</a>
+            </div>
+            <div class="collapse navbar-collapse" id="mainNavBar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'courses' %}">Courses</a></li>
+
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'user_profile' user.username %}"><span class="glyphicon glyphicon-log-out"></span>  Your Profile</a></li>
+                    <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span>  Sign up</a></li>
+                    <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>  Log in</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<br/>
+<br>
+<br>
+<div class="container">
+    <div class="navbar">
+        <!-- Navbar content here -->
+    </div>
+
+    <div class="profile">
+        <h1>User Profile</h1>
+        <h2>{{ user_profile.uid.username }}</h2> <!-- Access username from user_profile -->
+        <i class="fas fa-user-circle fa-5x"></i>
+        <br><input type="file" id="profile-photo" accept="image/*" style="display: none;" />
+        <label for="profile-photo" class="upload-button">
+            <i class="fas fa-upload"></i> Upload Photo
+        </label>
+        <div id="uploaded-photo" class="position-relative">
+            <div class="remove-change-buttons">
+                <button onclick="removePhoto()">Remove Photo</button>
+                <button onclick="changePhoto()">Change Photo</button>
+            </div>
+        </div> <!-- To display uploaded photo -->
+    </div>
+    
+    <!-- Course Progress -->
+    <div class="course-progress">
+        <h2>Enrolled courses</h2>
+        <!-- Display user's progress in different courses -->
+        {% for course_progress in courses_with_completion %} <!-- Correct variable name -->
+        <div class="course">
+            <h3>{{ course_progress.Course_ID__Course_name }}</h3> <!-- Access course name from course_progress -->
+            <h3> </h3>
+            <div class="progress-circle" style="border-color: #4287f5;">{{ course_progress.completion_percentage }}%</div> <!-- Access completion percentage -->
+        </div>
+        {% endfor %}
+    </div>
+    
+
+    <!-- Recommended Courses -->
+    <div class="recommended-courses">
+        <h2>Recommended Courses</h2>
+        <!-- Add more recommended courses as needed -->
+    </div>
+</div>
+
+<script>
+    document.getElementById('profile-photo').addEventListener('change', function(e) {
+      var file = e.target.files[0];
+      var reader = new FileReader();
+      reader.onload = function(event) {
+        var img = document.createElement('img');
+        img.src = event.target.result;
+        img.style.width = '150px'; // Adjust the width of the uploaded photo
+        img.style.height = '150px'; // Adjust the height of the uploaded photo
+        document.getElementById('uploaded-photo').innerHTML = ''; // Clear previous photo
+        document.getElementById('uploaded-photo').appendChild(img);
+        
+        // Hide user icon
+        document.querySelector('.fa-user-circle').style.display = 'none';
+        
+        // Hide upload photo button
+        document.querySelector('.upload-button').style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    });
+    
+    // Remove photo function
+    function removePhoto() {
+      // Remove uploaded photo
+      document.getElementById('uploaded-photo').innerHTML = '';
+      // Show user icon
+      document.querySelector('.fa-user-circle').style.display = 'block';
+      // Show upload photo button
+      document.querySelector('.upload-button').style.display = 'inline-block';
+    }
+
+    // Change photo function
+    function changePhoto() {
+      // Trigger file input click to allow changing the photo
+      document.getElementById('profile-photo').click();
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+    function updateProgress(courseIndex, percentage) {
+        var progressCircles = document.querySelectorAll('.progress-circle');
+        var progressCircle = progressCircles[courseIndex];
+        var radius = progressCircle.getAttribute('r');
+        var circumference = 2 * Math.PI * radius;
+        var dashOffset = circumference - (percentage / 100) * circumference;
+        
+        progressCircle.style.strokeDasharray = circumference;
+        progressCircle.style.strokeDashoffset = dashOffset;
+        
+        // Update the percentage text inside the circle
+        progressCircle.textContent = percentage + '%';
+      }
+    });
+      
+      // Initial call to update progress circles
+      updateProgress(0, 50); // Java progress
+      updateProgress(1, 75); // Python progress
+      updateProgress(2, 25); // HTML progress
+</script>
+</body>
+
+</html>
